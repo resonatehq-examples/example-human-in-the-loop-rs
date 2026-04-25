@@ -1,0 +1,21 @@
+[package]
+name = "example-human-in-the-loop-rs"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Block a Resonate workflow on human approval and resolve it from an HTTP gateway."
+
+[[bin]]
+name = "worker"
+path = "src/bin/worker.rs"
+
+[[bin]]
+name = "gateway"
+path = "src/bin/gateway.rs"
+
+[dependencies]
+resonate = { package = "resonate-sdk", git = "https://github.com/resonatehq/resonate-sdk-rs", branch = "main" }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+axum = "0.7"
