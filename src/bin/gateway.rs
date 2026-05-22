@@ -5,6 +5,7 @@ use axum::{
     Json, Router,
 };
 use resonate::prelude::*;
+use resonate::types::Value;
 use serde::Deserialize;
 use serde_json::json;
 use std::sync::Arc;
@@ -76,7 +77,10 @@ async fn resolve_promise(
     state
         .resonate
         .promises
-        .resolve(&promise_id, json!(true))
+        .resolve(
+            &promise_id,
+            Value::from_serializable(true).expect("failed to serialize true"),
+        )
         .await
         .expect("failed to resolve promise");
 
