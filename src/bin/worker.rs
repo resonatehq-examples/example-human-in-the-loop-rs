@@ -11,7 +11,7 @@ use resonate::prelude::*;
 #[resonate::function]
 async fn foo(ctx: &Context, workflow_id: String) -> Result<String> {
     // Latent durable promise — no function backing it. Resolved externally.
-    let blocking_promise = ctx.promise::<bool>();
+    let blocking_promise = ctx.promise::<bool>().create()?;
     let promise_id = blocking_promise.id().await?;
 
     // Make the promise ID reachable from outside (email, webhook, log, ...).
